@@ -1,11 +1,11 @@
-// Shooter Nexus
+// Copyright Epic Games, Inc. All Rights Reserved.
 
 using UnrealBuildTool;
 using System.Collections.Generic;
 
 public class ShooterNexusEditorTarget : TargetRules
 {
-	public ShooterNexusEditorTarget(TargetInfo Target) : base(Target)
+	public ShooterNexusEditorTarget( TargetInfo Target) : base(Target)
 	{
 		Type = TargetType.Editor;
 		DefaultBuildSettings = BuildSettingsVersion.V5;
