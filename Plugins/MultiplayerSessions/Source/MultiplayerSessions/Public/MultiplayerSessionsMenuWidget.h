@@ -19,6 +19,7 @@ class MULTIPLAYERSESSIONS_API UMultiplayerSessionsMenuWidget : public UUserWidge
 	GENERATED_BODY()
 
 public:
+	UFUNCTION(BlueprintCallable)
 	void MultiplayerSessionsMenuSetup(int32 NumberOfPublicConnections = 4, FString TypeOfMatch = FString(TEXT("FreeForAll")), 
 		FString LobbyPath = FString(TEXT("/Game/Maps/Lobby")));
 
@@ -41,8 +42,6 @@ private:
 	UButton* HostButton;
 	UPROPERTY(meta = (BindWidget))
 	UButton* JoinButton;
-	UPROPERTY(meta = (BindWidget))
-	UButton* StartButton;
 
 	UFUNCTION()
 	void HostButtonClicked();
@@ -53,7 +52,7 @@ private:
 
 	UMultiplayerSessionsSubsystem* MultiplayerSessionsSubsystem;
 
-	int NumPublicConnections = 4;
+	int32 NumPublicConnections = 4;
 	FString MatchType = FString(TEXT("FreeForAll"));
 	FString PathToLobby = FString(TEXT("/Game/Maps/Lobby"));
 

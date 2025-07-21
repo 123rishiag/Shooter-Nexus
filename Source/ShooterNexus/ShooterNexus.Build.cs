@@ -18,6 +18,7 @@ public class ShooterNexus : ModuleRules
 				"EnhancedInput",
 				"OnlineSubsystem",
 				"OnlineSubsystemSteam",
+				"SteamSockets",
 				"UMG",
 				"Slate",
 				"SlateCore"
