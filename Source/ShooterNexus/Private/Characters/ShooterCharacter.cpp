@@ -10,6 +10,7 @@
 #include "InputMappingContext.h"
 #include "InputActionValue.h"
 #include "GameFramework/PlayerController.h"
+#include "Components/WidgetComponent.h"
 
 AShooterCharacter::AShooterCharacter()
 {
@@ -31,6 +32,9 @@ AShooterCharacter::AShooterCharacter()
 	FollowCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("FollowCamera"));
 	FollowCamera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName);
 	FollowCamera->bUsePawnControlRotation = false;
+
+	OverheadWidget = CreateDefaultSubobject<UWidgetComponent>(TEXT("OverheadWidget"));
+	OverheadWidget->SetupAttachment(GetRootComponent());
 
 }
 
