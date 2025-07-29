@@ -15,6 +15,8 @@ class UInputMappingContext;
 class UInputAction;
 struct FInputActionValue;
 
+class AWeapon;
+
 UCLASS()
 class SHOOTERNEXUS_API AShooterCharacter : public ACharacter
 {
@@ -24,6 +26,7 @@ public:
 	AShooterCharacter();
 	virtual void Tick(float DeltaTime) override;
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 
 protected:
 	virtual void BeginPlay() override;
@@ -61,7 +64,14 @@ private:
 
 #pragma endregion
 
+	UPROPERTY(ReplicatedUsing = OnRep_OverlappingWeapon)
+	AWeapon* OverlappingWeapon;
+
+	UFUNCTION()
+	void OnRep_OverlappingWeapon(AWeapon* LastWeapon);
+
 public:
 
+	void SetOverlappingWeapon(AWeapon* Weapon);
 
 };
