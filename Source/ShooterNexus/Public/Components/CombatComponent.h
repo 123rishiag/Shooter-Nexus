@@ -18,6 +18,7 @@ class SHOOTERNEXUS_API UCombatComponent : public UActorComponent
 public:	
 	UCombatComponent();
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
+	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 
 	friend class AShooterCharacter;
 
@@ -30,6 +31,7 @@ private:
 
 	AShooterCharacter* Character;
 
+	UPROPERTY(Replicated)
 	AWeapon* EquippedWeapon;
 
 public:	

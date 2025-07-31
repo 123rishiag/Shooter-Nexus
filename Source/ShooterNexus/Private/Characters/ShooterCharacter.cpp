@@ -24,6 +24,7 @@ AShooterCharacter::AShooterCharacter()
 	bUseControllerRotationRoll = false;
 
 	GetCharacterMovement()->bOrientRotationToMovement = true;
+	GetCharacterMovement()->NavAgentProps.bCanCrouch = true;
 
 	CameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoom"));
 	CameraBoom->SetupAttachment(GetMesh());
@@ -61,6 +62,7 @@ void AShooterCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
 		EnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Started, this, &AShooterCharacter::Jump);
 		EnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Canceled, this, &ACharacter::StopJumping);
 		EnhancedInputComponent->BindAction(EquipAction, ETriggerEvent::Started, this, &AShooterCharacter::Equip);
+		EnhancedInputComponent->BindAction(CrouchAction, ETriggerEvent::Started, this, &AShooterCharacter::Crouch);
 	}
 
 }
@@ -144,6 +146,17 @@ void AShooterCharacter::Equip()
 		}
 	}
 }
+void AShooterCharacter::Crouch()
+{
+	if (bIsCrouched)
+	{
+		ACharacter::UnCrouch();
+	}
+	else
+	{
+		ACharacter::Crouch();
+	}
+}
 
 void AShooterCharacter::OnRep_OverlappingWeapon(AWeapon* LastWeapon)
 {
@@ -181,5 +194,10 @@ void AShooterCharacter::SetOverlappingWeapon(AWeapon* Weapon)
 			OverlappingWeapon->ShowPickupWidget(true);
 		}
 	}
+}
+
+bool AShooterCharacter::IsWeaponEquipped()
+{
+	return (Combat && Combat->EquippedWeapon);
 }
 
