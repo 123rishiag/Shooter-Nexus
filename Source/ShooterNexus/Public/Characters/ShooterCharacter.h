@@ -61,11 +61,14 @@ private:
 	UInputAction* JumpAction;
 	UPROPERTY(EditAnywhere, Category = "Input")
 	UInputAction* EquipAction;
+	UPROPERTY(EditAnywhere, Category = "Input")
+	UInputAction* CrouchAction;
 
 	void Move(const FInputActionValue& Value);
 	void Look(const FInputActionValue& Value);
 	void Jump();
 	void Equip();
+	void Crouch();
 
 #pragma endregion
 
@@ -84,5 +87,6 @@ private:
 public:
 
 	void SetOverlappingWeapon(AWeapon* Weapon);
+	bool IsWeaponEquipped();
 
 };
