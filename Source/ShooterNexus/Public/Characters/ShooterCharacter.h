@@ -63,12 +63,16 @@ private:
 	UInputAction* EquipAction;
 	UPROPERTY(EditAnywhere, Category = "Input")
 	UInputAction* CrouchAction;
+	UPROPERTY(EditAnywhere, Category = "Input")
+	UInputAction* AimAction;
 
 	void Move(const FInputActionValue& Value);
 	void Look(const FInputActionValue& Value);
 	void Jump();
 	void Equip();
 	void Crouch();
+	void AimStart();
+	void AimStop();
 
 #pragma endregion
 
@@ -82,11 +86,12 @@ private:
 	UCombatComponent* Combat;
 
 	UFUNCTION(Server, Reliable)
-	void ServerEquipButtonPressed();
+	void ServerEquip();
 
 public:
 
 	void SetOverlappingWeapon(AWeapon* Weapon);
 	bool IsWeaponEquipped();
+	bool IsAiming();
 
 };
