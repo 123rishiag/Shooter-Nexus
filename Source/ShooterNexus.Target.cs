@@ -1,4 +1,4 @@
-// Copyright Epic Games, Inc. All Rights Reserved.
+// Shooter Nexus
 
 using UnrealBuildTool;
 
